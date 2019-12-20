@@ -1,16 +1,7 @@
 <?php
-// データベースの接続情報
-define( 'DB_HOST', 'localhost');
-define( 'DB_USER', 'root');
-define( 'DB_PASS', 'password');
-define( 'DB_NAME', 'sns');
-// 変数の初期化
-$csv_data = null;
-$sql = null;
-$res = null;
-$message_array = array();
 
-session_start();
+require_once(__DIR__ . './config.php');
+
 if( !empty($_SESSION['message']) === true ) {
 	// 出力の設定
 	header("Content-Type: application/octet-stream");

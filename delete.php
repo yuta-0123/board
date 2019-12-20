@@ -1,20 +1,7 @@
 <?php
 
-// データベースの接続情報
-define( 'DB_HOST', 'localhost');
-define( 'DB_USER', 'root');
-define( 'DB_PASS', 'password');
-define( 'DB_NAME', 'sns');
-// タイムゾーン設定
-date_default_timezone_set('Asia/Tokyo');
-// 変数の初期化
-$message_id = null;
-$mysqli = null;
-$sql = null;
-$res = null;
-$error_message = array();
-$message_data = array();
-session_start();
+require_once(__DIR__ . './config.php');
+
 if( empty($_SESSION['admin_login']) || $_SESSION['admin_login'] !== true ) {
     // ログインページへリダイレクト
 	header("Location: ./admin.php");
