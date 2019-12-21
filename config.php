@@ -1,7 +1,5 @@
 <?php
 
-// 管理ページのログインパスワード
-define( 'PASSWORD', '123');
 // データベースの接続情報
 define( 'DB_HOST', 'localhost');
 define( 'DB_USER', 'root');

@@ -2,23 +2,13 @@
 
 require_once(__DIR__ . './config.php');
 
-if( !empty($_GET['btn_logout']) ) {
-	unset($_SESSION['admin_login']);
-}
-if( !empty($_POST['btn_submit']) ) {
-	if( !empty($_POST['admin_password']) && $_POST['admin_password'] === PASSWORD ) {
-		$_SESSION['admin_login'] = true;
-	} else {
-		$error_message[] = 'ログインに失敗しました。';
-	}
-}
 // データベースに接続
 $mysqli = new mysqli( DB_HOST, DB_USER, DB_PASS, DB_NAME);
 // 接続エラーの確認
 if( $mysqli->connect_errno ) {
 	$error_message[] = 'データの読み込みに失敗しました。 エラー番号 '.$mysqli->connect_errno.' : '.$mysqli->connect_error;
 } else {
-	$sql = "SELECT id,view_name,message,post_date FROM message ORDER BY post_date DESC";
+	$sql = "SELECT view_name,message,post_date FROM message ORDER BY post_date DESC";
 	$res = $mysqli->query($sql);
     if( $res ) {
 		$message_array = $res->fetch_all(MYSQLI_ASSOC);
@@ -28,6 +18,9 @@ if( $mysqli->connect_errno ) {
 ?>
 <?php require 'header.php'; ?>
 <?php require 'menu.php'; ?>
+
+<?php if (isset($_SESSION['users'])): ?>
+
 <?php if( !empty($error_message) ): ?>
 	<ul class="error_message">
 		<?php foreach( $error_message as $value ): ?>
@@ -36,7 +29,6 @@ if( $mysqli->connect_errno ) {
 	</ul>
 <?php endif; ?>
 <section>
-<?php if( !empty($_SESSION['admin_login']) && $_SESSION['admin_login'] === true ): ?>
 
 <form method="get" action="./download.php">
 	<select name="limit">
@@ -48,7 +40,7 @@ if( $mysqli->connect_errno ) {
 </form>
 
 <?php if( !empty($message_array) ){ ?>
-<?php foreach( $message_array as $value ){ ?>
+<?php foreach( $message_array as $value ){　?>
 <article>
 	<div class="info">
 		<h2><?php echo $value['view_name']; ?></h2>
@@ -60,19 +52,8 @@ if( $mysqli->connect_errno ) {
 <?php } ?>
 <?php } ?>
 
-<form method="get" action="">
-    <input type="submit" name="btn_logout" value="ログアウト">
-</form>
 <?php else: ?>
-
-<form method="post">
-	<div>
-		<label for="admin_password">ログインパスワード</label>
-		<input id="admin_password" type="password" name="admin_password" value="">
-	</div>
-	<input type="submit" name="btn_submit" value="ログイン">
-</form>
+	<p><?php echo 'ログインしてください。 '; ?></p>
 <?php endif; ?>
 </section>
-</body>
-</html>
+<?php require 'footer.php'; ?>

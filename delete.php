@@ -2,10 +2,6 @@
 
 require_once(__DIR__ . './config.php');
 
-if( empty($_SESSION['admin_login']) || $_SESSION['admin_login'] !== true ) {
-    // ログインページへリダイレクト
-	header("Location: ./admin.php");
-}
 if( !empty($_GET['message_id']) && empty($_POST['message_id']) ) {
 	$message_id = (int)htmlspecialchars($_GET['message_id'], ENT_QUOTES);
 	// データベースに接続

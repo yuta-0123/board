@@ -77,10 +77,11 @@ if( $mysqli->connect_errno ) {
 <?php endif; ?>
 <?php require 'header.php'; ?>
 <?php require 'menu.php'; ?>
+<?php if (isset($_SESSION['users'])): ?>
 <form method="post">
 	<div>
 		<label for="view_name">表示名</label>
-		<input id="view_name" type="text" name="view_name" value="">
+		<input id="view_name" type="text" name="view_name" value="<?php echo $_SESSION['users']['view_name']; ?>">
 	</div>
 	<div>
 		<label for="message">ひと言メッセージ</label>
@@ -101,5 +102,8 @@ if( $mysqli->connect_errno ) {
 </article>
 <?php } ?>
 <?php } ?>
+<?php else: ?>
+	<p><?php echo 'ログインしてください。 '; ?></p>
+<?php endif; ?>
 </section>
 <?php require 'footer.php'; ?>
