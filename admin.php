@@ -31,7 +31,7 @@ if( $mysqli->connect_errno ) {
 <section>
 
 <?php if( !empty($message_array) ){ ?>
-<?php foreach( $message_array as $value ){　?>
+<?php foreach( $message_array as $value ){ ?>
 <article>
 	<div class="info">
 		<h2><?php echo $value['view_name']; ?></h2>
