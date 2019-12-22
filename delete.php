@@ -52,7 +52,6 @@ if( !empty($_GET['message_id']) && empty($_POST['message_id']) ) {
 		header("Location: ./admin.php");
 	}
 }
-
 ?>
 <?php require 'header.php'; ?>
 <?php require 'menu.php'; ?>
