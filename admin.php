@@ -8,7 +8,7 @@ $mysqli = new mysqli( DB_HOST, DB_USER, DB_PASS, DB_NAME);
 if( $mysqli->connect_errno ) {
 	$error_message[] = 'データの読み込みに失敗しました。 エラー番号 '.$mysqli->connect_errno.' : '.$mysqli->connect_error;
 } else {
-	$sql = "SELECT view_name,message,post_date FROM message ORDER BY post_date DESC";
+	$sql = "SELECT id,view_name,message,post_date FROM message ORDER BY post_date DESC";
 	$res = $mysqli->query($sql);
     if( $res ) {
 		$message_array = $res->fetch_all(MYSQLI_ASSOC);
@@ -30,15 +30,6 @@ if( $mysqli->connect_errno ) {
 <?php endif; ?>
 <section>
 
-<form method="get" action="./download.php">
-	<select name="limit">
-		<option value="">全て</option>
-		<option value="10">10件</option>
-		<option value="30">30件</option>
-	</select>
-	<input type="submit" name="btn_download" value="ダウンロード">
-</form>
-
 <?php if( !empty($message_array) ){ ?>
 <?php foreach( $message_array as $value ){　?>
 <article>
@@ -53,7 +44,7 @@ if( $mysqli->connect_errno ) {
 <?php } ?>
 
 <?php else: ?>
-	<p><?php echo 'ログインしてください。 '; ?></p>
+	<p>ログインしてください。</p>
 <?php endif; ?>
 </section>
 <?php require 'footer.php'; ?>

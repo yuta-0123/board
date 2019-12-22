@@ -9,5 +9,5 @@
 <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-<h1>ひと言掲示板 </h1>
+<h1>ひと言掲示板</h1>
 

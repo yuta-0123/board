@@ -2,7 +2,7 @@
 
 require_once(__DIR__ . './config.php');
 
-if( !empty($_GET['message_id']) && empty($_POST['message_id']) ) {
+if( !empty($_GET['message_id']) && empty($_POST['message_id'])) {
 	$message_id = (int)htmlspecialchars($_GET['message_id'], ENT_QUOTES);
 	// データベースに接続
 	$mysqli = new mysqli( DB_HOST, DB_USER, DB_PASS, DB_NAME);

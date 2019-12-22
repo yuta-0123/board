@@ -103,7 +103,7 @@ if( $mysqli->connect_errno ) {
 <?php } ?>
 <?php } ?>
 <?php else: ?>
-	<p><?php echo 'ログインしてください。 '; ?></p>
+	<p>ログインしてください。</p>
 <?php endif; ?>
 </section>
 <?php require 'footer.php'; ?>

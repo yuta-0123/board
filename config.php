@@ -17,5 +17,8 @@ $message_array = array();
 $success_message = null;
 $error_message = array();
 $clean = array();
+$csv_data = null;
+$sql = null;
+$res = null;
 
 session_start();
