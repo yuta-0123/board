@@ -5,7 +5,7 @@ require_once(__DIR__ . './config.php');
 // 管理者としてログインしているか確認
 if(!isset($_SESSION['users'])) {
 	// ログインページへリダイレクト
-	header("Location: ./admin.php");
+	header("Location: ./login-input.php");
 }
 
 if( !empty($_GET['message_id']) && empty($_POST['message_id']) ) {

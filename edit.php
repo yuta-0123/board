@@ -2,6 +2,12 @@
 
 require_once(__DIR__ . './config.php');
 
+// 管理者としてログインしているか確認
+if(!isset($_SESSION['users'])) {
+	// ログインページへリダイレクト
+	header("Location: ./login-input.php");
+}
+
 if( !empty($_GET['message_id']) && empty($_POST['message_id'])) {
 	$message_id = (int)htmlspecialchars($_GET['message_id'], ENT_QUOTES);
 	// データベースに接続

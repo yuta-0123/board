@@ -51,19 +51,6 @@ if( !empty($_POST['btn_submit']) ) {
 	}
 }
 
-// データベースに接続
-$mysqli = new mysqli( 'localhost', 'root', 'password', 'sns');
-// 接続エラーの確認
-if( $mysqli->connect_errno ) {
-	$error_message[] = 'データの読み込みに失敗しました。 エラー番号 '.$mysqli->connect_errno.' : '.$mysqli->connect_error;
-} else {
-	$sql = "SELECT view_name,message,post_date FROM message ORDER BY post_date DESC";
-	$res = $mysqli->query($sql);
-    if( $res ) {
-		$message_array = $res->fetch_all(MYSQLI_ASSOC);
-    }
-    $mysqli->close();
-}
 ?>
 <?php if( !empty($success_message) ): ?>
     <p class="success_message"><?php echo $success_message; ?></p> 
@@ -81,7 +68,7 @@ if( $mysqli->connect_errno ) {
 <form method="post">
 	<div>
 		<label for="view_name">表示名</label>
-		<input id="view_name" type="text" name="view_name" value="<?php echo $_SESSION['users']['view_name']; ?>">
+		<p id="view_name" name="view_name" class="view_name"><?php echo $_SESSION['users']['view_name']; ?></p>
 	</div>
 	<div>
 		<label for="message">ひと言メッセージ</label>

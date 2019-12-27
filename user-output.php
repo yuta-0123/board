@@ -14,20 +14,20 @@ if (isset($_SESSION['users'])) {
 }
 if (empty($sql->fetchAll())) {
 	if (isset($_SESSION['users'])) {
-		$sql=$pdo->prepare('update users set name=?, email=?, '.
+		$sql=$pdo->prepare('update users set email=?, '.
 			'view_name=?, password=? where id=?');
 		$sql->execute([
-			$_REQUEST['name'], $_REQUEST['email'], 
+			$_REQUEST['email'], 
 			$_REQUEST['view_name'], $_REQUEST['password'], $id]);
 		$_SESSION['users']=[
-			'id'=>$id, 'name'=>$_REQUEST['name'], 
+			'id'=>$id,  
 			'email'=>$_REQUEST['email'], 'view_name'=>$_REQUEST['view_name'], 
 			'password'=>$_REQUEST['password']];
 		echo 'お客様情報を更新しました。';
 	} else {
-		$sql=$pdo->prepare('insert into users values(null,?,?,?,?)');
+		$sql=$pdo->prepare('insert into users values(null,?,?,?)');
 		$sql->execute([
-			$_REQUEST['name'], $_REQUEST['email'], 
+			$_REQUEST['email'], 
 			$_REQUEST['view_name'], $_REQUEST['password']]);
 		echo 'お客様情報を登録しました。';
 	}

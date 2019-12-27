@@ -12,7 +12,6 @@ create table message (
 
 create table users (
 	id int auto_increment primary key, 
-	name varchar(100) not null, 
 	email varchar(255) not null unique, 
 	view_name varchar(100) not null, 
 	password varchar(255) not null

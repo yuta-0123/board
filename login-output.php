@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php require 'header.php'; ?>
 <?php require 'menu.php'; ?>
 <?php
@@ -9,7 +8,7 @@ $sql=$pdo->prepare('select * from users where email=? and password=?');
 $sql->execute([$_REQUEST['email'], $_REQUEST['password']]);
 foreach ($sql as $row) {
 	$_SESSION['users']=[
-		'id'=>$row['id'], 'name'=>$row['name'], 
+		'id'=>$row['id'],  
 		'email'=>$row['email'], 'view_name'=>$row['view_name'], 
 		'password'=>$row['password']];
 }
